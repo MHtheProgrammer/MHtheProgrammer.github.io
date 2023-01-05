@@ -1,7 +1,16 @@
+/* =============================================================================
+ * This is the code that handles all the logic behind the gravity chamber
+ * page. This includes the math controlling the movement inside the canvas
+ * element, event listeners, all logic for button presses and the handlers
+ * for the listeners, the sidebar, etc. In the future I might break these
+ * up into separate files, but not today...
+ * Author: Matthew Herrera-Almeyda
+ * =============================================================================
+ */
+
 // =============================================================================
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  ============================ PRE-ART SETUP =================================
+// * * * * * * * * * * * * * *   PRE-ART SETUP   * * * * * * * * * * * * * * *
+//  ============================================================================
 
 var canvas = document.querySelector('canvas');
 var c = canvas.getContext('2d');
@@ -21,9 +30,8 @@ window.onload = function() {
   document.getElementById("sidebar").style.backgroundColor = SIDEBAR_COLOR;
 }
 // =============================================================================
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// ============================= DEFINE VARIABLES ==============================
+// * * * * * * * * * * * * * * *  DEFINE VARIABLES  * * * * * * * * * * * * * *
+// =============================================================================
 
 // LOGISTICAL VARIABLES
 var sidebarViewable = false;
@@ -44,18 +52,17 @@ const ROOF_WIDTH = 5;
 //                         sliders and used in the simulation with underscores
 //                         rather than camelCase because these are special
 //                         variables that I want to keep track of while coding
-var mouse_gravity_radius = 200;
-var mouse_gravity_strength = 1.5;
-var gravity_acceleration = 0.5;// 0.5 default;
+var mouse_gravity_radius = 200; // default 200
+var mouse_gravity_strength = 1.5; // default 1.5
+var gravity_acceleration = 0.5; // default 0.5;
 var roof_closed = false; // default false (open roof)
 var ball_radius = 15; // default 15
 var number_of_balls = 50; // default 50 balls
 var ball_bounciness = 0.7;// default 0.7
 
 // =============================================================================
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// ======================= HANDLE HTML AND EVENTS HERE =========================
+// * * * * * * * * * * * *  HANDLE HTML AND EVENTS HERE  * * * * * * * * * * * *
+// =============================================================================
 
 // HANDLE SLIDERS CHANGE HERE
 numBallsSlider.onchange = function() {
@@ -121,9 +128,8 @@ canvas.addEventListener("mouseover", event => {
 });
 
 // =============================================================================
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// ======================== CREATING THE CIRCLE CLASS ==========================
+// * * * * * * * * * * * *  CREATING THE CIRCLE CLASS  * * * * * * * * * * * *
+// =============================================================================
 
 function Circle(x, y, dx) {
   this.x = x;
@@ -149,7 +155,7 @@ function Circle(x, y, dx) {
     // First update Acceleration
     if (mouseDown) {
       var dist = Math.sqrt( ((this.x - mousePosX)**2) + ((this.y - mousePosY)**2) );
-      if (dist <= mouse_gravity_radius * 2) { // 3 chosen arbitrarily as a distance away where balls should not be affected
+      if (dist <= mouse_gravity_radius * 2) { // 2 chosen arbitrarily (testing) as a distance away where balls should not be affected
         let gravForce = mouse_gravity_strength / Math.max(1, ((dist/mouse_gravity_radius)**2));
         let theta = Math.atan(Math.abs(mousePosY - this.y) / Math.abs(mousePosX - this.x));
         if (mousePosY > this.y) {
@@ -185,7 +191,7 @@ function Circle(x, y, dx) {
     this.dy += this.ddy;
 
     // Now update position of ball and account for walls
-    const BOUNCE_CHAOS = 0.1;
+    const BOUNCE_CHAOS = 0.1; // This number controls the degree of randomness in retained velocity following a bounce
     this.x += this.dx;
     this.y += this.dy;
     if (this.x + this.radius >= innerWidth) {
@@ -211,9 +217,8 @@ function Circle(x, y, dx) {
 }
 
 // =============================================================================
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// ====================== CREATING AN ARRAY OF CIRCLES =========================
+// * * * * * * * * * *   CREATING AN ARRAY OF CIRCLES   * * * * * * * * * * *
+// ==============================================================================
 
 // numBalls here represents how many balls to end with
 // Eg: if you have 100 balls and run removeBalls(30),
@@ -244,9 +249,8 @@ function reInitializeBalls() {
 initializeBalls(number_of_balls);
 
 // =============================================================================
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// =========================== ANIMATING THE PICTURE ===========================
+// * * * * * * * * * * * * *   ANIMATING THE PICTURE   * * * * * * * * * * * * *
+// =============================================================================
 
 function animate() {
   requestAnimationFrame(animate);
@@ -266,10 +270,11 @@ function animate() {
 animate();
 
 // =============================================================================
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// ========================= FUNCTIONS USED BY PROGRAM =========================
+// * * * * * * * * * * * *  FUNCTIONS USED BY PROGRAM  * * * * * * * * * * * * *
+// =============================================================================
 
+// Magic numbers in this function were found by me testing different values till
+// it made colors I like, so if a number seems out of nowhere its cuz it is.
 function getRandomColor() {
   let rgb = [Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255)];
   let min = 0;
@@ -282,6 +287,8 @@ function getRandomColor() {
       max = i;
     }
   }
+  // Find a saturation to make more distinct colors, getting random RGB values
+  // Sucks, we'll end up with ugly colors, saturating the color makes it more vibrant
   var saturation = Math.max(Math.floor((rgb[max] - rgb[min]) * 0.10), 20);
   if (rgb[min] - saturation < 0) {
     saturation = rgb[min];
@@ -291,9 +298,13 @@ function getRandomColor() {
   }
   rgb[min] = rgb[min] - saturation;
   rgb[max] = rgb[max] + saturation;
+
+  // Now add white to make it more pastel, eg add some number to R,G, and B
   rgb[0] = Math.min(rgb[0] + 80, 255);
   rgb[1] = Math.min(rgb[1] + 80, 255);
   rgb[2] = Math.min(rgb[2] + 80, 255);
+
+  // Convert to Hexcode
   let redStr = (+rgb[0]).toString(16);
 	let greenStr = (+rgb[1]).toString(16);
 	let blueStr = (+rgb[2]).toString(16);

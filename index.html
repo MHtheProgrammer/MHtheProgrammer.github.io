@@ -7,57 +7,13 @@
 	  <link rel="stylesheet" href="index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Website - Matthew Herrera</title>
+    <title>Home Page</title>
   </head>
 
   <body>
-    <span id="loader" style="font-family: Noto Sans;">I am used for loading</span>
-    <canvas id="canvas"></canvas>
-
-    <div id="sidebar" class="sidebar">
-      <p class="sliderText">Number of Balls</p>
-      <div class="slidecontainer" id="numBallsContainer">
-        <input type="range" min="1" max="300" step="1" value="50" class="slider" id="numBallsSlider">
-      </div>
-      <p class="sliderText">Ball Radius</p>
-      <div class="slidecontainer" id="ballRadiusContainer">
-        <input type="range" min="2" max="50" step="1" value="15" class="slider" id="ballRadiusSlider">
-      </div>
-      <p class="sliderText">Ball Bounciness</p>
-      <div class="slidecontainer" id="ballBouncinessContainer">
-        <input type="range" min="0.0" max="0.9" step="0.01" value="0.7" class="slider" id="ballBouncinessSlider">
-      </div>
-      <p class="sliderText">Strength of Gravity</p>
-      <div class="slidecontainer" id="gravityContainer">
-        <input type="range" min="0.0" max="2.0" step="0.01" value="0.5" class="slider" id="gravitySlider">
-      </div>
-      <p class="sliderText">Strength of Mouse</p>
-      <div class="slidecontainer" id="mouseGravityContainer">
-        <input type="range" min="0.1" max="5.0" step="0.01" value="1.5" class="slider" id="mouseGravitySlider">
-      </div>
-      <p class="sliderText">Radius of Mouse</p>
-      <div class="slidecontainer" id="mouseRadiusContainer">
-        <input type="range" min="100" max="500" step="1" value="200" class="slider" id="mouseRadiusSlider">
-      </div>
-      <div id="arrowBox">
-        <button type="button" id="arrowButton" onclick="toggleSidebar()">Settings</button>
-      </div>
-      <div id="resetBallsBox">
-        <button type="button" id="resetButton" onclick="reInitializeBalls()">Get New Balls</button>
-      </div>
-      <div>
-        <p class="sliderText">Close Roof</p>
-        <label class="switch">
-          <input type="checkbox" id="roofSwitch" onclick="toggleRoof()">
-          <span class="sliderRound"></span>
-        </label>
-      </div>
+    <span id="loader" style="font-family: Noto Sans;"></span>
+    <div id="GravityChamberPortal">
+      <button type="button" id="GravityChamberPortal">GRAVITY CHAMBER</button>
     </div>
-    <div id="roofContainer">
-      <div class="roof left"></div>
-      <div class="roof right"></div>
-    </div>
-    <script src="./gravityballsv12.js"></script>
-
   </body>
 </html>
