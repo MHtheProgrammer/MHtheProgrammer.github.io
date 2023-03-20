@@ -5,14 +5,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@900&display=swap" rel="stylesheet">
-	  <link rel="stylesheet" href="index.css">
+	  <link rel="stylesheet" href="../css/gravitychamber.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <style>
+      @font-face { font-family: FredokaOne; src: url('../resources/fonts/fredoka_one/FredokaOne-Regular.ttf'); }
+        h1 {
+           font-family: FredokaOne
+        }
+    </style>
     <title>Gravity Chamber</title>
   </head>
 
   <body>
-    <span id="loader" style="font-family: Noto Sans;">I am used for loading</span>
+    <span id="loader" style="font-family: FredokaOne;">I am used for loading</span>
     <canvas id="canvas"></canvas>
 
     <div id="sidebar" class="sidebar">
@@ -58,7 +64,7 @@
       <div class="roof left"></div>
       <div class="roof right"></div>
     </div>
-    <script src="./gravityballsv12.js"></script>
+    <script src="../js/gravitychamber.js"></script>
 
   </body>
 </html>
