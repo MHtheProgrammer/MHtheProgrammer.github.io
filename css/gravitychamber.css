@@ -46,15 +46,15 @@ canvas {
 	align-items: center;
 }
 
-#arrowBox {
+#settingsBox {
 	position: absolute;
 	top: 250px;
 	left: 270px;
-	color: #126E82;
+	color: #30475e;
 }
 
-#arrowButton {
-	background-color: #126E82;
+#settingsButton {
+	background-color: #30475e;
 	border: 0px;
 	border-radius: 0px 0px 5px 5px;
 	font-family: Noto sans;
@@ -80,7 +80,7 @@ canvas {
 	appearance: none;
 	width: 90%;
 	height: 2px;
-	background: #373a5d;
+	background: #2d132c;
 	outline: none;
 	opacity: 1;
 	position: relative;

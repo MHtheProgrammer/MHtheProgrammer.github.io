@@ -1,0 +1,27 @@
+@font-face { font-family: "FredokaOne"; src: url('./resources/fonts/fredoka_one/FredokaOne-Regular.ttf'); }
+
+body {
+  background-color: #222831;
+}
+
+.textLabel {
+  color: #FFFFFF;
+  font-family: Noto sans;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+.toolBarContainer {
+  float: left;
+  padding-right: 10px;
+}
+
+.toolButton {
+  font-family: Noto sans;
+  font-weight: normal;
+}
+
+#toolBar {
+  display: inline-block;
+}

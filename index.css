@@ -1,5 +1,8 @@
 @font-face { font-family: "FredokaOne"; src: url('./resources/fonts/fredoka_one/FredokaOne-Regular.ttf'); }
 
+body {
+  background-color: #222831;
+}
 
 .portalButton {
   width: 100%;
