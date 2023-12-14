@@ -33,21 +33,22 @@ window.onload = function() {
 // * * * * * * * * * * * * * * *  DEFINE VARIABLES  * * * * * * * * * * * * * *
 // =============================================================================
 
-// LOGISTICAL VARIABLES
-var sidebarViewable = false;
-var mouseDown = false;
-var mousePosX = 0;
-var mousePosY = 0;
-var circleArray = [];
 // CONSTANTS
 const VERSION = "Gravitational Testing Chamber";
 const BACKGROUND_COLOR = "#222831"; //"#363062""#112031";
 const FONT_COLOR = "#476072"; //"#345B63""#827397";
 const FONT = "72px FredokaOne";
 //const BALL_COLORS = ["#CA3E47","#FAF9F6","#E9D5DA"]; NOT CURRENTLY USED
-const SIDEBAR_COLOR = "#126E82";//EE6F57,9C3D54,9D84B7,4D4C7D,126E82,EB596E,
-const FRICTIONAL_PENALTY = 0.98;
+const SIDEBAR_COLOR = "#30475e";//EE6F57,9C3D54,9D84B7,4D4C7D,126E82,EB596E,
 const ROOF_WIDTH = 5;
+const FRICTIONAL_PENALTY = 0.98;
+const BOUNCE_CHAOS = 0.1; // This number controls the degree of randomness in retained velocity following a bounce
+// LOGISTICAL VARIABLES
+var sidebarViewable = false;
+var mouseDown = false;
+var mousePosX = 0;
+var mousePosY = 0;
+var circleArray = [];
 // SLIDER VALUES === NOTE: I'm naming these variables that are determined by the
 //                         sliders and used in the simulation with underscores
 //                         rather than camelCase because these are special
@@ -118,8 +119,8 @@ function resizeCanvas() {
 	canvas.width = document.documentElement.clientWidth;
 }
 
-var arrowButton = document.getElementById("arrowButton");
-arrowButton.addEventListener("mouseover", event => {
+var settingsButton = document.getElementById("settingsButton");
+settingsButton.addEventListener("mouseover", event => {
   document.getElementById("sidebar").style.left = "0px";
 });
 
@@ -191,7 +192,6 @@ function Circle(x, y, dx) {
     this.dy += this.ddy;
 
     // Now update position of ball and account for walls
-    const BOUNCE_CHAOS = 0.1; // This number controls the degree of randomness in retained velocity following a bounce
     this.x += this.dx;
     this.y += this.dy;
     if (this.x + this.radius >= innerWidth) {

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Microsoft Paint</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="../css/mspaint.css">
+	</head>
+	<body style="margin:8;padding:0">
+		<span id="toolBar">
+			<span class="toolBarContainer"><!-- Holds Red Green Blue Sliders -->
+				<span class="textLabel">
+					Red  <input id="sliderRed" type="range" min="0" max="255" step="1" value="1" />
+				</span>
+				<span class="textLabel">
+					Green <input id="sliderGreen" type="range" min="0" max="255" step="1" value="1" />
+				</span>
+				<span class="textLabel">
+					 Blue  <input id="sliderBlue" type="range" min="0" max="255" step="1" value="1" />
+				</span>
+			</span>
+			<span class="toolBarContainer" style="padding-top:5px;"> <!-- Holds Color Selector -->
+				<span id="currColorBox" style="width:25px;height:25px;background-color: #000000;border:1px solid #808080;display:inline-block;"></span>
+				<button id="redColorBox" style="width:20px;height:20px;background-color: #ED1C24;border:1px solid #808080;display:inline-block;"></button>
+				<button id="orangeColorBox" style="width:20px;height:20px;background-color: #FF7F27;border:1px solid #808080;display:inline-block;"></button>
+				<button id="yellowColorBox" style="width:20px;height:20px;background-color: #FFF200;border:1px solid #808080;display:inline-block;"></button>
+				<button id="greenColorBox" style="width:20px;height:20px;background-color: #22B14C;border:1px solid #808080;display:inline-block;"></button>
+				<button id="lightBlueColorBox" style="width:20px;height:20px;background-color: #00A2E8;border:1px solid #808080;display:inline-block;"></button>
+				<button id="blueColorBox" style="width:20px;height:20px;background-color: #3F48CC;border:1px solid #808080;display:inline-block;"></button>
+				<button id="purpleColorBox" style="width:20px;height:20px;background-color: #A349A4;border:1px solid #808080;display:inline-block;"></button>
+				<button id="pinkColorBox" style="width:20px;height:20px;background-color: #FFAEC9;border:1px solid #808080;display:inline-block;"></button>
+				<button id="lightOrangeColorBox" style="width:20px;height:20px;background-color: #FFC90E;border:1px solid #808080;display:inline-block;"></button>
+				<button id="beigeColorBox" style="width:20px;height:20px;background-color: #EFE4B0;border:1px solid #808080;display:inline-block;"></button>
+				<button id="lightGreenColorBox" style="width:20px;height:20px;background-color: #B5E61D;border:1px solid #808080;display:inline-block;"></button>
+				<button id="extraLightBlueColorBox" style="width:20px;height:20px;background-color: #99D9EA;border:1px solid #808080;display:inline-block;"></button>
+				<button id="cyanColorBox" style="width:20px;height:20px;background-color: #7092BE;border:1px solid #808080;display:inline-block;"></button>
+				<button id="lightPurpleColorBox" style="width:20px;height:20px;background-color: #C8BFE7;border:1px solid #808080;display:inline-block;"></button>
+				<button id="blackColorBox" style="width:20px;height:20px;background-color: #000000;border:1px solid #808080;display:inline-block;"></button>
+				<button id="whiteColorBox" style="width:20px;height:20px;background-color: #FFFFFF;border:1px solid #808080;display:inline-block;"></button>
+				<span class="textLabel" style="padding-top:7px;">
+					Width <input id="sliderWidth" type="range" min="1" max="20" step="1" value="5" />
+				</span>
+
+			</span>
+			<span class="toolBarContainer" style="padding-top:5px;"> <!-- Holds The Tool Buttons -->
+				<div>
+					<button id="brushButton" style="font-weight:1000;" class="toolButton"> Brush Tool </button>
+					<button id="watercolorButton" class="toolButton"> Watercolor Brush </button>
+					<button id="lineButton" class="toolButton"> Line Tool </button>
+					<button id="eraserButton" class="toolButton"> Eraser Tool </button>
+					<button id="fillToolButton" class="toolButton"> Fill Tool </button>
+					<button id="pipetteButton" class="toolButton"> Color Copier </button>
+					<button id="backgroundButton" class="toolButton"> Set Background Color </button>
+				</div>
+				<div style="padding-top:3px;">
+					<button id="squareButton" class="toolButton"> Square Shape </button>
+					<button id="triangleButton" class="toolButton"> Triangle Shape </button>
+					<button id="circleButton" class="toolButton"> Circle Shape </button>
+					<button id="starButton" class="toolButton"> Star Shape </button>
+					<button id="fillButton" class="toolButton"> Toggle Shape Fill </button>
+				</div>
+			</span>
+		</span> <!-- END TOOLBAR-->
+
+		<div class="textLabel">Press Z to undo, Y to redo</div>
+		<canvas id="canvas" style="border: 1px solid black;"></canvas>
+		<script src="../js/mspaint.js"></script>
+	</body>
+</html>
