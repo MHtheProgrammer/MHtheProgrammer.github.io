@@ -1,7 +1,15 @@
 @font-face { font-family: "FredokaOne"; src: url('./resources/fonts/fredoka_one/FredokaOne-Regular.ttf'); }
 
+html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   background-color: #222831;
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .portalButton {
@@ -20,9 +28,9 @@ body {
 
 .portalContainer {
   width: 75%;
-  height: 20%;
+  height: 25%;
   position: relative;
-  margin: 20px auto 20px;
+  margin: 20px auto 2% auto;
   outline-color: gray;
   outline-style: solid;
   outline-width: 4px;
@@ -45,6 +53,9 @@ body {
     max-width: 100%;
     max-height: 100%;
     vertical-align: top;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .portalContainer img.hoveredPortalImage {
@@ -53,7 +64,7 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 24px;
   max-width: 100%;
   max-height: 100%;
