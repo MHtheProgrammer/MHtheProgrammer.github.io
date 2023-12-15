@@ -470,11 +470,11 @@ function circleTool() {
 }
 
 function starTool() {
-	var apex = mix(mLastX,mPosY,mPosX,mPosY,0.5);
-	var topLeft = mix(mLastX,mLastY,mLastX,mPosY,0.6);
-	var topRight = mix(mPosX,mLastY,mPosX,mPosY,0.6);
-	var bottomLeft = mix(mLastX,mLastY,mPosX,mLastY,0.2);
-	var bottomRight = mix(mLastX,mLastY,mPosX,mLastY,0.8);
+	var apex = mix(mLastX,mLastY,mPosX,mLastY,0.5);
+	var topLeft = mix(mLastX,mPosY,mLastX,mLastY,0.6);
+	var topRight = mix(mPosX,mPosY,mPosX,mLastY,0.6);
+	var bottomLeft = mix(mLastX,mPosY,mPosX,mPosY,0.2);
+	var bottomRight = mix(mLastX,mPosY,mPosX,mPosY,0.8);
 	var innerLeftBottom = mix(topLeft[0],topLeft[1],bottomRight[0],bottomRight[1],0.4);
 	var innerRightBottom = mix(bottomLeft[0],bottomLeft[1],topRight[0],topRight[1],0.6);
 	var botTemp = mix(bottomLeft[0],bottomLeft[1],bottomRight[0],bottomRight[1],0.5);
