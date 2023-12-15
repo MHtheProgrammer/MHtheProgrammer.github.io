@@ -24,6 +24,7 @@ var fillBoolean = false;
 var oldImageObject;
 var lastButton = "brushButton";
 
+//Adding a comment to JS file so git will do an actual redeploy of the site, ignore me!
 
 // Mouse Active is a boolean that represents whether the mouse is being held down,
 // and therefore whether things should happen
