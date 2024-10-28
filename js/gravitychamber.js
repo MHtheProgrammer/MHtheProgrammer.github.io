@@ -26,7 +26,7 @@ window.onload = function() {
   c.fillStyle = FONT_COLOR;
   c.font = FONT;
   c.textAlign = "center";
-  c.fillText(VERSION, canvas.width/2, canvas.height/2);
+  c.fillText(BACKGROUND_TEXT, canvas.width/2, canvas.height/2);
   document.getElementById("sidebar").style.backgroundColor = SIDEBAR_COLOR;
 }
 // =============================================================================
@@ -34,14 +34,14 @@ window.onload = function() {
 // =============================================================================
 
 // CONSTANTS
-const VERSION = "Gravitational Testing Chamber";
+const BACKGROUND_TEXT = "Gravitational Control Chamber";
 const BACKGROUND_COLOR = "#222831"; //"#363062""#112031";
 const FONT_COLOR = "#476072"; //"#345B63""#827397";
 const FONT = "72px FredokaOne";
 //const BALL_COLORS = ["#CA3E47","#FAF9F6","#E9D5DA"]; NOT CURRENTLY USED
 const SIDEBAR_COLOR = "#30475e";//EE6F57,9C3D54,9D84B7,4D4C7D,126E82,EB596E,
 const ROOF_WIDTH = 5;
-const FRICTIONAL_PENALTY = 0.98;
+const FRICTIONAL_PENALTY = 0.98; //speed penalty when sliding on floor or bouncing
 const BOUNCE_CHAOS = 0.1; // This number controls the degree of randomness in retained velocity following a bounce
 // LOGISTICAL VARIABLES
 var sidebarViewable = false;
@@ -139,12 +139,11 @@ function Circle(x, y, dx) {
   this.dx = dx;
   this.ddx = 0.0;
   this.ddy = 0.0;
-  this.radius = ball_radius;
   this.color = getRandomColor(); //BALL_COLORS[Math.floor(Math.random()*BALL_COLORS.length)];
 
   this.draw = function() {
     c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+    c.arc(this.x, this.y, ball_radius, 0, Math.PI*2, false);
     c.strokeStyle = this.color;
     c.stroke();
     c.fillStyle = this.color;
@@ -156,7 +155,7 @@ function Circle(x, y, dx) {
     // First update Acceleration
     if (mouseDown) {
       var dist = Math.sqrt( ((this.x - mousePosX)**2) + ((this.y - mousePosY)**2) );
-      if (dist <= mouse_gravity_radius * 2) { // 2 chosen arbitrarily (testing) as a distance away where balls should not be affected
+      if (dist <= mouse_gravity_radius * 2) { // 2 chosen arbitrarily (trial & error) as a distance away where balls should not be affected
         let gravForce = mouse_gravity_strength / Math.max(1, ((dist/mouse_gravity_radius)**2));
         let theta = Math.atan(Math.abs(mousePosY - this.y) / Math.abs(mousePosX - this.x));
         if (mousePosY > this.y) {
@@ -194,21 +193,21 @@ function Circle(x, y, dx) {
     // Now update position of ball and account for walls
     this.x += this.dx;
     this.y += this.dy;
-    if (this.x + this.radius >= innerWidth) {
-      this.x = innerWidth - this.radius;
+    if (this.x + ball_radius >= innerWidth) {
+      this.x = innerWidth - ball_radius;
       this.dx = -this.dx * (ball_bounciness + (Math.random() * BOUNCE_CHAOS));
     }
-    if (this.x - this.radius <= 0) {
-      this.x = this.radius;
+    if (this.x - ball_radius <= 0) {
+      this.x = ball_radius;
       this.dx = -this.dx * (ball_bounciness + (Math.random() * BOUNCE_CHAOS));
     }
-    if (this.y + this.radius >= innerHeight) {
-      this.y = innerHeight - this.radius;
+    if (this.y + ball_radius >= innerHeight) {
+      this.y = innerHeight - ball_radius;
       this.dy = -this.dy * (ball_bounciness + (Math.random() * BOUNCE_CHAOS));
       this.dx = this.dx * FRICTIONAL_PENALTY;
     }
-    if (roof_closed && this.y - this.radius <= ROOF_WIDTH) {
-      this.y = this.radius + ROOF_WIDTH;
+    if (roof_closed && this.y - ball_radius <= ROOF_WIDTH) {
+      this.y = ball_radius + ROOF_WIDTH;
       this.dy = -this.dy * (ball_bounciness + (Math.random() * BOUNCE_CHAOS));
     }
     this.draw();
@@ -260,7 +259,7 @@ function animate() {
   c.fillStyle = FONT_COLOR;
   c.font = FONT;
   c.textAlign = "center";
-  c.fillText(VERSION, canvas.width/2, canvas.height/2);
+  c.fillText(BACKGROUND_TEXT, canvas.width/2, canvas.height/2);
 
   for (var i = 0; i < number_of_balls; i++) {
     circleArray[i].update();
@@ -288,7 +287,7 @@ function getRandomColor() {
     }
   }
   // Find a saturation to make more distinct colors, getting random RGB values
-  // Sucks, we'll end up with ugly colors, saturating the color makes it more vibrant
+  // sucks, we'll end up with ugly colors, saturating the color makes it more vibrant
   var saturation = Math.max(Math.floor((rgb[max] - rgb[min]) * 0.10), 20);
   if (rgb[min] - saturation < 0) {
     saturation = rgb[min];
